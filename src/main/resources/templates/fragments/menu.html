@@ -1,0 +1,22 @@
+<div th:fragment="menu" id="menu" class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">
+            <img th:src="@{/img/logo.png}" alt="logo_img" height="50px">
+        </a>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav">
+                <a class="nav-item nav-link" th:href="@{/}">Главная</a>
+                <a class="nav-item nav-link" th:href="@{/bookings}">Расписание</a>
+                <a class="nav-item nav-link" th:href="@{/films}">Кинотека</a>
+            </div>
+        </div>
+        <div class="navbar-nav ml-auto" th:if="${true}">
+            <a class="nav-item nav-link" th:href="@{/users/login}">Вход</a>
+            <a class="nav-item nav-link" th:href="@{/users/register}">Регистрация</a>
+        </div>
+        <div class="navbar-nav ml-auto" th:if="${true}">
+            <a class="nav-item nav-link" href="#" th:text="Гость"></a>
+            <a class="nav-item nav-link" th:href="@{/users/logout}">Выход</a>
+        </div>
+    </div>
+</div>
