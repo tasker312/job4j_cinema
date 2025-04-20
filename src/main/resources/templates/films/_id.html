@@ -3,7 +3,41 @@
 <body>
 <div th:replace="~{fragments/menu}"></div>
 <div class="container">
-
+    <div class="w-75 mt-5 mx-auto">
+        <div class="card mb-3 shadow-sm">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img th:src="@{/files/{fileId}(fileId=*{film.fileId})}" class="img-fluid rounded-start"
+                         alt="Постер фильма">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title text-black-50" th:text="${film.name}">Name</h3>
+                        <p class="card-text" th:text="${film.description}">Description</p>
+                        <p class="card-text">
+                            <strong>Жанр:</strong>
+                            <span th:text="${film.genre}">Genre</span>
+                        </p>
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Год выхода:</strong>
+                                <span th:text="${film.year}">Year</span>
+                            </li>
+                            <li>
+                                <strong>Минимальный возраст:</strong>
+                                <span th:text="${film.minimalAge} + '+'">Minimal age</span>
+                            </li>
+                            <li>
+                                <strong>Длительность:</strong>
+                                <span th:text="${film.durationInMinutes}">Duration</span>
+                                <span> минут</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 </body>
 </html>
