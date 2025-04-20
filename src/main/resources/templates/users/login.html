@@ -3,7 +3,34 @@
 <body>
 <div th:replace="~{fragments/menu}"></div>
 <div class="container">
-
+    <form th:action="@{/users/login}" method="post" class="w-25 mt-5 mx-auto p-3 shadow">
+        <div th:if="${error}">
+            <p class="alert alert-danger" th:text="${error}">Error message</p>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="text-l">
+                <b>Email</b>
+            </label>
+            <div>
+                <input type="email" id="email" name="email" class="form-control" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="password" class="text-l">
+                <b>Пароль</b>
+            </label>
+            <div>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+        </div>
+        <div class="mb-3">
+            <button type="submit" class="btn btn-success w-100">Войти</button>
+        </div>
+        <span>
+            Еще не зарегистрированы?
+            <a th:href="@{/users/register}">Регистрация</a>
+        </span>
+    </form>
 </div>
 </body>
 </html>

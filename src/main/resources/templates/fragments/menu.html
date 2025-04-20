@@ -10,12 +10,12 @@
                 <a class="nav-item nav-link" th:href="@{/films}">Кинотека</a>
             </div>
         </div>
-        <div class="navbar-nav ml-auto" th:if="${true}">
+        <div class="navbar-nav ml-auto" th:if="${user.fullName == 'Гость'}">
             <a class="nav-item nav-link" th:href="@{/users/login}">Вход</a>
             <a class="nav-item nav-link" th:href="@{/users/register}">Регистрация</a>
         </div>
-        <div class="navbar-nav ml-auto" th:if="${true}">
-            <a class="nav-item nav-link" href="#" th:text="Гость"></a>
+        <div class="navbar-nav ml-auto" th:if="${user.fullName !='Гость'}">
+            <a class="nav-item nav-link" href="#" th:text="${user.fullName}">UserName</a>
             <a class="nav-item nav-link" th:href="@{/users/logout}">Выход</a>
         </div>
     </div>
