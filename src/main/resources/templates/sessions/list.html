@@ -1,0 +1,59 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header}">
+
+</head>
+<body>
+<div th:replace="~{fragments/menu}"></div>
+<div class="container">
+
+
+    <div th:each="filmSession: ${filmSessions}" class="w-50 mt-5 mx-auto">
+        <div class="card mb-3 shadow-sm">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <a th:href="@{/sessions/{sessionId}(sessionId=${filmSession.id})}">
+                    <img th:src="@{/files/{fileId}(fileId=*{filmSession.film.fileId})}" class="img-fluid rounded-start"
+                         alt="Постер фильма"></a>
+                </div>
+                <div class="col-md-8 ps-3">
+                    <div class="card-body">
+                        <h3 class="card-title text-black-50" th:text="${filmSession.film.name}">Name</h3>
+                        <p class="card-text">
+                            <strong>Жанр:</strong>
+                            <span th:text="|${filmSession.film.genre} (${filmSession.film.year})|">Genre</span>
+                        </p>
+                        <ul class="list-unstyled">
+                            <li>
+                                <strong>Минимальный возраст:</strong>
+                                <span th:text="${filmSession.film.minimalAge} + '+'">Minimal age</span>
+                            </li>
+                            <li>
+                                <strong>Длительность:</strong>
+                                <span th:text="${filmSession.film.durationInMinutes}">Duration</span>
+                                <span> мин</span>
+                            </li>
+                            <br>
+                            <li>
+                                <strong>Зал:</strong>
+                                <span th:text="|${filmSession.hall.name} - №${filmSession.hall.id}|">Start time</span>
+                            </li>
+                            <li>
+                                <strong>Начало сеанса:</strong>
+                                <span th:text="${{filmSession.startTime}}">Start time</span>
+                            </li>
+                        </ul>
+                        <a class="btn btn-success w-75" th:href="@{/sessions/{sessionId}(sessionId=${filmSession.id})}">
+                            Выбрать билет
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--    <div th:each="filmSession: ${filmSessions}">-->
+    <!--        <span th:text="${filmSession}"></span>-->
+    <!--    </div>-->
+</div>
+</body>
+</html>

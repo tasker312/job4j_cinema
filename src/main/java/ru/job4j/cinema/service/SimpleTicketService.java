@@ -18,4 +18,9 @@ public class SimpleTicketService implements TicketService {
         return ticketRepository.book(ticket);
     }
 
+    @Override
+    public Optional<Ticket> findById(int id) {
+        return ticketRepository.findById(id);
+    }
+
 }

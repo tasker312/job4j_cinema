@@ -8,6 +8,7 @@ import org.sql2o.Sql2o;
 import org.sql2o.Sql2oException;
 import ru.job4j.cinema.model.Ticket;
 
+import java.util.Collection;
 import java.util.Optional;
 
 @Repository
@@ -15,7 +16,7 @@ import java.util.Optional;
 @Slf4j
 public class Sql2oTicketRepository implements TicketRepository {
 
-    private Sql2o sql2o;
+    private final Sql2o sql2o;
 
     @Override
     public Optional<Ticket> book(Ticket ticket) {
@@ -38,6 +39,25 @@ public class Sql2oTicketRepository implements TicketRepository {
             log.error(e.getMessage(), e);
         }
         return Optional.empty();
+    }
+
+    @Override
+    public Collection<Ticket> findBySession(int sessionId) {
+        try (Connection connection = sql2o.open()) {
+            var query = connection.createQuery("SELECT * FROM tickets WHERE session_id = :session_id")
+                    .addParameter("session_id", sessionId);
+            return query.setColumnMappings(Ticket.COLUMN_MAPPING).executeAndFetch(Ticket.class);
+        }
+    }
+
+    @Override
+    public Optional<Ticket> findById(int id) {
+        try (Connection connection = sql2o.open()) {
+            var query = connection.createQuery("SELECT * FROM tickets WHERE id = :id")
+                    .addParameter("id", id);
+            var ticket = query.setColumnMappings(Ticket.COLUMN_MAPPING).executeAndFetchFirst(Ticket.class);
+            return Optional.ofNullable(ticket);
+        }
     }
 
 }

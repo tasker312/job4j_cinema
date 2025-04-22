@@ -33,7 +33,7 @@ public class UserController {
             return "users/login";
         }
         request.getSession().setAttribute("user", userOptional.get());
-        return "redirect:/bookings/list";
+        return "redirect:/sessions";
     }
 
     @GetMapping("/logout")
@@ -56,7 +56,7 @@ public class UserController {
             return "users/register";
         }
         request.getSession().setAttribute("user", userOptional.get());
-        return "redirect:/bookings/list";
+        return "redirect:/sessions";
     }
 
 }

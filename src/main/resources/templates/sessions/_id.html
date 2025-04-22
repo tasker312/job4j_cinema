@@ -1,0 +1,102 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header}"></head>
+<body>
+<script th:inline="javascript">
+    const hall = /*[[${hall}]]*/ {};
+</script>
+<script src="/js/placeSelector.js" defer></script>
+<div th:replace="~{fragments/menu}"></div>
+<div class="container">
+    <div class="w-75 mt-5 mx-auto">
+        <div class="card mb-3 shadow-sm">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img th:src="@{/files/{fileId}(fileId=*{filmSession.film.fileId})}" class="img-fluid rounded-start"
+                         alt="Постер фильма">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title text-black-50" th:text="${filmSession.film.name}">Name</h3>
+                        <p class="card-text" th:text="${filmSession.film.description}">Description</p>
+                        <div class="d-flex">
+                            <div class="w-50">
+                                <p class="card-text">
+                                    <strong>Жанр:</strong>
+                                    <span th:text="${filmSession.film.genre}">Genre</span>
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li>
+                                        <strong>Год выхода:</strong>
+                                        <span th:text="${filmSession.film.year}">Year</span>
+                                    </li>
+                                    <li>
+                                        <strong>Минимальный возраст:</strong>
+                                        <span th:text="${filmSession.film.minimalAge} + '+'">Minimal age</span>
+                                    </li>
+                                    <li>
+                                        <strong>Длительность:</strong>
+                                        <span th:text="${filmSession.film.durationInMinutes}">Duration</span>
+                                        <span> мин</span>
+                                    </li>
+                                    <br>
+                                    <li>
+                                        <strong>Зал:</strong>
+                                        <span th:text="|${filmSession.hall.name} - №${filmSession.hall.id}|">Start time</span>
+                                    </li>
+                                    <li>
+                                        <strong>Начало сеанса:</strong>
+                                        <span th:text="${{filmSession.startTime}}">Start time</span>
+                                    </li>
+                                </ul>
+                                <form class="d-flex flex-wrap" th:action="@{/tickets/buy}" method="post">
+                                    <input type="hidden" name="userId" th:value="${user.id}">
+                                    <input type="hidden" name="sessionId" th:value="${filmSession.id}">
+                                    <div class="mb-3 w-50 p-1">
+                                        <label for="row">
+                                            <b>Ряд</b>
+                                        </label>
+                                        <select class="form-control" id="row" name="rowNumber">
+                                            <option th:each="place, iStat : ${hall.seats}" th:value="${iStat.count}"
+                                                    th:text="${iStat.count}"></option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-3 w-50 p-1">
+                                        <label for="place">
+                                            <b>Место</b>
+                                        </label>
+                                        <select class="form-control" id="place" name="placeNumber"></select>
+                                    </div>
+                                    <button type="submit" class="btn btn-success w-100">Купить билет</button>
+                                </form>
+                            </div>
+                            <div class="w-50 ps-5">
+                                <h4>Схема зала</h4>
+                                <i class="bi bi-square"> - доступные места</i>
+                                <br>
+                                <i class="bi bi-square-fill"> - занятые места</i>
+                                <table>
+                                    <tr>
+                                        <td></td>
+                                        <td th:each="j: ${#numbers.sequence(1, hall.placeCount)}" th:text="${j}"
+                                            class="text-center">
+                                        </td>
+                                    </tr>
+                                    <tr th:each="i: ${#numbers.sequence(0, hall.rowCount - 1)}">
+                                        <td th:text="${i + 1}"></td>
+                                        <td th:each="j: ${#numbers.sequence(0, hall.placeCount - 1)}" class="p-1">
+                                            <i th:if="${hall.seats[i][j]}" class="bi bi-square-fill"></i>
+                                            <i th:if="${!hall.seats[i][j]}" class="bi bi-square"></i>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

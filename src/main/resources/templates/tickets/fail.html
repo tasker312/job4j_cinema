@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header}"></head>
+<body>
+<div th:replace="~{fragments/menu}"></div>
+<div class="container">
+    <h3 class="mt-3">Не удалось забронировать билет на выбранное место.</h3>
+    <p class="text-info">Вероятно оно уже занято. Перейдите на страницу
+        <a th:href="@{/sessions/{sessionId}(sessionId=${ticket.sessionId})}">бронирования билетов</a>
+        и попробуйте снова.
+    </p>
+</div>
+</body>
+</html>

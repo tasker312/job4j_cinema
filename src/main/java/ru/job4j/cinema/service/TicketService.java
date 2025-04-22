@@ -8,4 +8,6 @@ public interface TicketService {
 
     Optional<Ticket> book(Ticket ticket);
 
+    Optional<Ticket> findById(int id);
+
 }
