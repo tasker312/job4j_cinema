@@ -47,6 +47,14 @@
                                         <strong>Начало сеанса:</strong>
                                         <span th:text="${{filmSession.startTime}}">Start time</span>
                                     </li>
+                                    <li>
+                                        <strong>Конец сеанса:</strong>
+                                        <span th:text="${{filmSession.endTime}}">End time</span>
+                                    </li>
+                                    <li>
+                                        <strong>Цена:</strong>
+                                        <span th:text="${{filmSession.price}}">Price</span>
+                                    </li>
                                 </ul>
                                 <form class="d-flex flex-wrap" th:action="@{/tickets/buy}" method="post">
                                     <input type="hidden" name="userId" th:value="${user.id}">

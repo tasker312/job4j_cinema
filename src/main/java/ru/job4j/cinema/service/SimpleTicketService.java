@@ -15,6 +15,9 @@ public class SimpleTicketService implements TicketService {
 
     @Override
     public Optional<Ticket> book(Ticket ticket) {
+        if (ticket.getRowNumber() < 1 || ticket.getPlaceNumber() < 1) {
+            return Optional.empty();
+        }
         return ticketRepository.book(ticket);
     }
 

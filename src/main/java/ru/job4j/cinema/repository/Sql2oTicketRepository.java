@@ -24,7 +24,7 @@ public class Sql2oTicketRepository implements TicketRepository {
             var query = connection.createQuery(
                             """
                                     INSERT INTO tickets (session_id, row_number, place_number, user_id)
-                                    Values (:session_id, :row_number, :place_number, :user_id)
+                                    VALUES (:session_id, :row_number, :place_number, :user_id)
                                     """,
                             true
                     )

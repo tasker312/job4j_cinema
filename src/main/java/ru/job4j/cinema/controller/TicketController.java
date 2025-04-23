@@ -35,14 +35,14 @@ public class TicketController {
     public String buyTicket(@ModelAttribute Ticket ticket) {
         var ticketOptional = ticketService.book(ticket);
         return ticketOptional.map(value -> "redirect:/tickets/" + value.getId())
-                .orElse("redirect:/tickets/fail");
+                .orElse("/tickets/fail");
     }
 
     @GetMapping("/fail")
     public String getFailPage(Model model) {
         var ticket = model.getAttribute("ticket");
         if (ticket == null) {
-            return "redirect:errors/404";
+            return "redirect:/sessions";
         }
         return "/tickets/fail";
     }

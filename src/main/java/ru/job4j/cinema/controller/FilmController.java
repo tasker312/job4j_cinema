@@ -26,8 +26,7 @@ public class FilmController {
     public String getFilmPage(@PathVariable int id, Model model) {
         var filmOptional = filmService.findById(id);
         if (filmOptional.isEmpty()) {
-            model.addAttribute("error", "Film not found");
-            return "errors/404";
+            return "redirect:/films/list";
         }
         model.addAttribute("film", filmOptional.get());
         return "/films/_id";

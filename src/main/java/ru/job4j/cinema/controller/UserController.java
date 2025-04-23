@@ -56,7 +56,7 @@ public class UserController {
             return "users/register";
         }
         request.getSession().setAttribute("user", userOptional.get());
-        return "redirect:/sessions";
+        return "redirect:/users/login";
     }
 
 }

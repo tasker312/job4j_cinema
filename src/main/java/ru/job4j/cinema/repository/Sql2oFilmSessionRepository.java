@@ -29,7 +29,7 @@ public class Sql2oFilmSessionRepository implements FilmSessionRepository {
     public Collection<FilmSession> findAll() {
         try (Connection connection = sql2o.open()) {
             var query = connection.createQuery(
-                    "SELECT * FROM film_sessions WHERE start_time > now() ORDER BY start_time");
+                    "SELECT * FROM film_sessions ORDER BY start_time");
             return query.setColumnMappings(FilmSession.COLUMN_MAPPING).executeAndFetch(FilmSession.class);
         }
     }

@@ -30,21 +30,6 @@ public class SimpleFilmSessionService implements FilmSessionService {
                                 .map(hall -> SessionConverter.convert(session, filmDTO, hall))
                         )
                 );
-
-//        var sessionOptional = filmSessionRepository.findById(id);
-//        if (sessionOptional.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        var session = sessionOptional.get();
-//        var filmDTO = filmService.findById(session.getFilmId());
-//        if (filmDTO.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        var hall = hallService.findById(session.getHallsId());
-//        if (hall.isEmpty()) {
-//            return Optional.empty();
-//        }
-//        return Optional.ofNullable(SessionConverter.convert(session, filmDTO.get(), hall.get()));
     }
 
     @Override
