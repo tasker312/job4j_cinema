@@ -1,7 +1,5 @@
 # job4j_cinema. Кинотеатр: Система покупки билетов
 
----
-
 ## Оглавление
 
 - [О проекте](#о-проекте)
@@ -9,6 +7,7 @@
 - [Требования к окружению](#требования-к-окружению)
 - [Запуск проекта](#запуск-проекта)
 - [Основные функции](#основные-функции)
+- [Страницы приложения](#страницы-приложения)
 
 ## О проекте
 
@@ -35,18 +34,23 @@
 
 1. **Клонируйте репозиторий:**
 
-        git clone https://github.com/tasker312/job4j_cinema
-        cd job4j_cinema
+       git clone https://github.com/tasker312/job4j_cinema
+       cd job4j_cinema
 
 2. **Создайте базу данных:**
 
-        create database cinema;
+       create database cinema;
 
-3. **Запустите приложение:**
+3. **Измените данные для подключения к базе данных:**
 
-        mvn spring-boot:run
+       db/liquibase.properties
+       src/main/resources/application.properties
 
-4. **Откройте приложение в браузере:**
+4. **Запустите приложение:**
+
+       mvn spring-boot:run
+
+5. **Откройте приложение в браузере:**
 
    Перейдите по адресу [http://localhost:8080](http://localhost:8080)
 
@@ -55,3 +59,26 @@
 - **Просмотр киносеансов и фильмов:** Страница с полным списком фильмов, доступных в кинотеатре, для удобного просмотра и выбора.
 - **Регистрация и вход:** Пользователи могут создавать учетные записи и входить в систему для доступа к покупке билетов.
 - **Покупка билетов:** Пользователи могут выбрать фильм, сеанс, ряд и место, а затем подтвердить покупку.
+
+## Страницы приложения
+
+### Главная страница
+![index.png](images/index.png "index page")
+
+### Страница регистрации
+![register.png](images/register.png "register page")
+
+### Страница авторизации
+![login.png](images/login.png "login page")
+
+### Список фильмов
+![films.png](images/films.png "films page")
+
+### Описание фильма
+![film.png](images/film.png "film page")
+
+### Список сеансов
+![sessions.png](images/sessions.png "sessions page")
+
+### Покупка билета
+![session.png](images/session.png "session page")
