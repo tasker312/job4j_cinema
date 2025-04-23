@@ -48,7 +48,7 @@
 
 4. **Запустите приложение:**
 
-       mvn spring-boot:run
+       mvn spring-boot:run -Pproduction
 
 5. **Откройте приложение в браузере:**
 
