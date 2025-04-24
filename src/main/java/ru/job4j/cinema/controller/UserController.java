@@ -2,6 +2,7 @@ package ru.job4j.cinema.controller;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.service.UserService;
+import ru.job4j.cinema.service.user.UserService;
 
 @Controller
 @RequestMapping("/users")
@@ -25,7 +26,7 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(@ModelAttribute User user, Model model, HttpServletRequest request) {
+    public String login(@Valid @ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "Invalid email or password");
@@ -48,7 +49,7 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, Model model, HttpServletRequest request) {
+    public String register(@Valid @ModelAttribute User user, Model model, HttpServletRequest request) {
         var userOptional = userService.save(user);
         if (userOptional.isEmpty()) {
             model.addAttribute("error", "User with e-mail '%s' already exists".formatted(user.getEmail()));

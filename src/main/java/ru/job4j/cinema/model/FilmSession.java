@@ -5,7 +5,9 @@ import lombok.*;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class FilmSession {
@@ -19,6 +21,7 @@ public class FilmSession {
             "price", "price"
     );
 
+    @EqualsAndHashCode.Include
     private int id;
 
     private int filmId;

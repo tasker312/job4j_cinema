@@ -1,13 +1,14 @@
 package ru.job4j.cinema.controller;
 
 import jakarta.servlet.http.HttpSession;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.service.TicketService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 @Controller
 @RequiredArgsConstructor
@@ -40,10 +41,6 @@ public class TicketController {
 
     @GetMapping("/fail")
     public String getFailPage(Model model) {
-        var ticket = model.getAttribute("ticket");
-        if (ticket == null) {
-            return "redirect:/sessions";
-        }
         return "/tickets/fail";
     }
 

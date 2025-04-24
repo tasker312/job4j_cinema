@@ -7,6 +7,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.Ticket;
+import ru.job4j.cinema.repository.ticket.Sql2oTicketRepository;
+import ru.job4j.cinema.repository.ticket.TicketRepository;
 
 import java.util.List;
 import java.util.Properties;
@@ -90,6 +92,7 @@ class Sql2oTicketRepositoryTest {
         var actualTicket = ticketRepository.findById(expectedTicket.getId());
 
         assertThat(actualTicket).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(expectedTicket);
     }
 
@@ -110,7 +113,9 @@ class Sql2oTicketRepositoryTest {
 
         var actualList = ticketRepository.findBySession(sessionId);
 
-        assertThat(actualList).hasSameElementsAs(expectedList);
+        assertThat(actualList)
+                .usingRecursiveComparison()
+                .isEqualTo(expectedList);
     }
 
     @Test

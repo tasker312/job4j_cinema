@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.User;
+import ru.job4j.cinema.repository.user.Sql2oUserRepository;
+import ru.job4j.cinema.repository.user.UserRepository;
 
 import java.io.InputStream;
 import java.util.Properties;
@@ -52,6 +54,7 @@ class Sql2oUserRepositoryTest {
         user.setId(savedUser.get().getId());
 
         assertThat(savedUser).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user);
     }
 
@@ -66,9 +69,11 @@ class Sql2oUserRepositoryTest {
         user2.setId(savedUser2.get().getId());
 
         assertThat(savedUser1).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user1);
 
         assertThat(savedUser2).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user2);
     }
 
@@ -82,6 +87,7 @@ class Sql2oUserRepositoryTest {
         var savedUser2 = userRepository.save(user2);
 
         assertThat(savedUser1).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user1);
 
         assertThat(savedUser2).isEmpty();
@@ -93,6 +99,7 @@ class Sql2oUserRepositoryTest {
         var foundUser = userRepository.findByEmailAndPassword(user.get().getEmail(), user.get().getPassword());
 
         assertThat(foundUser).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user.get());
     }
 

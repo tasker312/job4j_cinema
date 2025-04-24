@@ -4,7 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.dto.FilmDTO;
-import ru.job4j.cinema.service.FilmService;
+import ru.job4j.cinema.service.film.FilmService;
 
 import java.util.List;
 import java.util.Optional;
@@ -37,7 +37,9 @@ class FilmControllerTest {
         var actualList = model.getAttribute("films");
 
         assertThat(view).isEqualTo("/films/list");
-        assertThat(actualList).isEqualTo(expectedList);
+        assertThat(actualList)
+                .usingRecursiveComparison()
+                .isEqualTo(expectedList);
     }
 
     @Test
@@ -52,7 +54,9 @@ class FilmControllerTest {
         var actualFilm = model.getAttribute("film");
 
         assertThat(view).isEqualTo("/films/_id");
-        assertThat(actualFilm).isEqualTo(filmDTO);
+        assertThat(actualFilm)
+                .usingRecursiveComparison()
+                .isEqualTo(filmDTO);
     }
 
     @Test

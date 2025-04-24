@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.Genre;
+import ru.job4j.cinema.repository.genre.GenreRepository;
+import ru.job4j.cinema.repository.genre.Sql2oGenreRepository;
 
 import java.util.List;
 import java.util.Properties;
@@ -71,6 +73,7 @@ class Sql2oGenreRepositoryTest {
         var actualGenre = genreRepository.findById(genreList.get(0).getId());
 
         assertThat(actualGenre).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(expectedGenre);
     }
 
@@ -87,7 +90,9 @@ class Sql2oGenreRepositoryTest {
 
         var genres = genreRepository.findAll();
 
-        assertThat(genres).hasSameElementsAs(genreList);
+        assertThat(genres)
+                .usingRecursiveComparison()
+                .isEqualTo(genreList);
     }
 
 }

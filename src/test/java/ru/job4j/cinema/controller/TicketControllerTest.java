@@ -7,7 +7,7 @@ import org.springframework.mock.web.MockHttpSession;
 import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.model.Ticket;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.service.TicketService;
+import ru.job4j.cinema.service.ticket.TicketService;
 
 import java.util.Optional;
 
@@ -49,7 +49,9 @@ class TicketControllerTest {
         var actualTicket = (Ticket) model.getAttribute("ticket");
 
         verify(session).getAttribute("user");
-        assertThat(actualTicket).isEqualTo(ticket);
+        assertThat(actualTicket)
+                .usingRecursiveComparison()
+                .isEqualTo(ticket);
         assertThat(view).isEqualTo("/tickets/success");
     }
 
@@ -77,15 +79,6 @@ class TicketControllerTest {
         var view = ticketController.getFailPage(model);
 
         assertThat(view).isEqualTo("/tickets/fail");
-    }
-
-    @Test
-    public void whenGetFailWithoutBookingThenRedirectSessions() {
-
-        var model = new ConcurrentModel();
-        var view = ticketController.getFailPage(model);
-
-        assertThat(view).isEqualTo("redirect:/sessions");
     }
 
     @Test

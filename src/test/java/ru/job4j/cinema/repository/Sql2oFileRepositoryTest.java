@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.File;
+import ru.job4j.cinema.repository.file.FileRepository;
+import ru.job4j.cinema.repository.file.Sql2oFileRepository;
 
 import java.util.List;
 import java.util.Properties;
@@ -70,6 +72,7 @@ class Sql2oFileRepositoryTest {
         var actualFile = fileRepository.findById(fileList.get(1).getId());
 
         assertThat(actualFile).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(expectedFile);
     }
 

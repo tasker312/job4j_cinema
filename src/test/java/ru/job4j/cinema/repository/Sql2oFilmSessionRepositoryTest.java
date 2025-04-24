@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.*;
+import ru.job4j.cinema.repository.filmsession.FilmSessionRepository;
+import ru.job4j.cinema.repository.filmsession.Sql2oFilmSessionRepository;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

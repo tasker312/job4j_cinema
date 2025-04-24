@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.model.FilmSession;
 import ru.job4j.cinema.model.Hall;
 import ru.job4j.cinema.model.Ticket;
-import ru.job4j.cinema.repository.FilmSessionRepository;
-import ru.job4j.cinema.repository.HallRepository;
-import ru.job4j.cinema.repository.TicketRepository;
+import ru.job4j.cinema.repository.filmsession.FilmSessionRepository;
+import ru.job4j.cinema.repository.hall.HallRepository;
+import ru.job4j.cinema.repository.ticket.TicketRepository;
+import ru.job4j.cinema.service.hall.HallService;
+import ru.job4j.cinema.service.hall.SimpleHallService;
 
 import java.util.List;
 import java.util.Optional;
@@ -45,6 +47,7 @@ class SimpleHallServiceTest {
         var actualHall = hallService.findById(1);
 
         assertThat(actualHall).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(hall);
     }
 
@@ -64,7 +67,9 @@ class SimpleHallServiceTest {
 
         var actualHalls = hallService.findAll();
 
-        assertThat(actualHalls).hasSameElementsAs(halls);
+        assertThat(actualHalls)
+                .usingRecursiveComparison()
+                .isEqualTo(halls);
     }
 
     @Test

@@ -1,12 +1,13 @@
 package ru.job4j.cinema.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import jakarta.validation.constraints.NotBlank;
+import lombok.*;
 
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class User {
@@ -18,12 +19,17 @@ public class User {
             "password", "password"
     );
 
+    @EqualsAndHashCode.Include
     private int id;
 
+    @NotBlank
     private String fullName;
 
+    @NotBlank
+    @EqualsAndHashCode.Include
     private String email;
 
+    @NotBlank
     private String password;
 
 }

@@ -3,7 +3,9 @@ package ru.job4j.cinema.service;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.model.User;
-import ru.job4j.cinema.repository.UserRepository;
+import ru.job4j.cinema.repository.user.UserRepository;
+import ru.job4j.cinema.service.user.SimpleUserService;
+import ru.job4j.cinema.service.user.UserService;
 
 import java.util.Optional;
 
@@ -32,6 +34,7 @@ class SimpleUserServiceTest {
         var savedUser = userService.save(user);
 
         assertThat(savedUser).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user);
     }
 
@@ -41,7 +44,7 @@ class SimpleUserServiceTest {
 
         var result = userService.save(new User());
 
-        assertThat(result).isEqualTo(Optional.empty());
+        assertThat(result).isEmpty();
     }
 
     @Test
@@ -52,6 +55,7 @@ class SimpleUserServiceTest {
         var foundUser = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
 
         assertThat(foundUser).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(user);
     }
 

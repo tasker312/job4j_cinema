@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.sql2o.Sql2o;
 import ru.job4j.cinema.configuration.DatasourceConfiguration;
 import ru.job4j.cinema.model.Hall;
+import ru.job4j.cinema.repository.hall.HallRepository;
+import ru.job4j.cinema.repository.hall.Sql2oHallRepository;
 
 import java.io.InputStream;
 import java.util.List;
@@ -81,6 +83,7 @@ class Sql2oHallRepositoryTest {
         var actualHall = hallRepository.findById(hallList.get(0).getId());
 
         assertThat(actualHall).isPresent().get()
+                .usingRecursiveComparison()
                 .isEqualTo(expectedHall);
     }
 
@@ -97,7 +100,9 @@ class Sql2oHallRepositoryTest {
 
         var halls = hallRepository.findAll();
 
-        assertThat(halls).hasSameElementsAs(hallList);
+        assertThat(halls)
+                .usingRecursiveComparison()
+                .isEqualTo(hallList);
     }
 
 }

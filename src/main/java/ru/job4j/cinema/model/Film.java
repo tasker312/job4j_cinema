@@ -1,12 +1,12 @@
 package ru.job4j.cinema.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Map;
 
-@Data
+@Getter
+@Setter
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @NoArgsConstructor
 @AllArgsConstructor
 public class Film {
@@ -22,6 +22,7 @@ public class Film {
             "file_id", "fileId"
     );
 
+    @EqualsAndHashCode.Include
     private int id;
 
     private String name;

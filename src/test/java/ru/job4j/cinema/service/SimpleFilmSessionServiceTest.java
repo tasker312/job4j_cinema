@@ -5,7 +5,11 @@ import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.dto.FilmDTO;
 import ru.job4j.cinema.model.FilmSession;
 import ru.job4j.cinema.model.Hall;
-import ru.job4j.cinema.repository.FilmSessionRepository;
+import ru.job4j.cinema.repository.filmsession.FilmSessionRepository;
+import ru.job4j.cinema.service.film.FilmService;
+import ru.job4j.cinema.service.filmsession.FilmSessionService;
+import ru.job4j.cinema.service.filmsession.SimpleFilmSessionService;
+import ru.job4j.cinema.service.hall.HallService;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

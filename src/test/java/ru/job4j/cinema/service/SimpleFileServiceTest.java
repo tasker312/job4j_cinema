@@ -4,7 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.job4j.cinema.dto.FileDTO;
 import ru.job4j.cinema.model.File;
-import ru.job4j.cinema.repository.FileRepository;
+import ru.job4j.cinema.repository.file.FileRepository;
+import ru.job4j.cinema.service.file.FileService;
+import ru.job4j.cinema.service.file.SimpleFileService;
 
 import java.util.Optional;
 

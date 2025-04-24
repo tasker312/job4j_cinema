@@ -5,8 +5,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.ui.ConcurrentModel;
 import ru.job4j.cinema.dto.FilmSessionDTO;
 import ru.job4j.cinema.dto.HallDTO;
-import ru.job4j.cinema.service.FilmSessionService;
-import ru.job4j.cinema.service.HallService;
+import ru.job4j.cinema.service.filmsession.FilmSessionService;
+import ru.job4j.cinema.service.hall.HallService;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,7 +40,9 @@ class SessionControllerTest {
         var actualList = model.getAttribute("filmSessions");
 
         assertThat(view).isEqualTo("/sessions/list");
-        assertThat(actualList).isEqualTo(expectedList);
+        assertThat(actualList)
+                .usingRecursiveComparison()
+                .isEqualTo(expectedList);
     }
 
     @Test
@@ -56,8 +58,12 @@ class SessionControllerTest {
         var actualHall = model.getAttribute("hall");
 
         assertThat(view).isEqualTo("/sessions/_id");
-        assertThat(actualSession).isEqualTo(filmSessionDTO);
-        assertThat(actualHall).isEqualTo(hallDTO);
+        assertThat(actualSession)
+                .usingRecursiveComparison()
+                .isEqualTo(filmSessionDTO);
+        assertThat(actualHall)
+                .usingRecursiveComparison()
+                .isEqualTo(hallDTO);
     }
 
     @Test
