@@ -22,7 +22,6 @@ public class User {
     @EqualsAndHashCode.Include
     private int id;
 
-    @NotBlank
     private String fullName;
 
     @NotBlank
